@@ -1,4 +1,4 @@
-# 1+H Website · 1+H 官网
+# 1+H Website · Integrated Design
 
 [English](#english) · [中文](#中文)
 
@@ -36,7 +36,7 @@ Live site / 线上站点：<https://www.1h-arch.com>
 - **Inquiries**: contact-form submissions stored in the database; mark read, archive, delete, export CSV; optional e-mail notification
 - **Tools**: batch-generate image variants, change admin password
 
-**Security**
+**安全**
 
 - Prepared statements everywhere, all output escaped
 - `password_hash` / `password_verify`, session fixation protection, login throttling
