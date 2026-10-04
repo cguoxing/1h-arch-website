@@ -1,4 +1,4 @@
-# 1+H Website · Integrated Design
+# 1+H Website · 1+H Integrated Design
 
 [English](#english) · [中文](#中文)
 
