@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 508" role="img" aria-labelledby="title desc">
+  <title id="title">1+H logo</title>
+  <desc id="desc">Geometric 1+H monogram drawn with vector bars.</desc>
+  <g fill="#3a3a38">
+    <rect x="28" y="28" width="54" height="452"/>
+    <rect x="930" y="28" width="54" height="452"/>
+
+    <rect x="112" y="28" width="54" height="204"/>
+    <rect x="112" y="276" width="54" height="204"/>
+    <rect x="112" y="184" width="174" height="48"/>
+    <rect x="112" y="276" width="174" height="48"/>
+
+    <rect x="436" y="28" width="54" height="164"/>
+    <rect x="436" y="316" width="54" height="164"/>
+    <rect x="312" y="184" width="150" height="48"/>
+    <rect x="312" y="276" width="150" height="48"/>
+    <polygon points="462,184 490,184 490,220 462,248"/>
+    <polygon points="462,324 490,288 490,324"/>
+
+    <rect x="522" y="28" width="54" height="164"/>
+    <rect x="522" y="316" width="54" height="164"/>
+    <rect x="550" y="184" width="150" height="48"/>
+    <rect x="550" y="276" width="150" height="48"/>
+    <polygon points="522,184 550,220 550,248 522,220"/>
+    <polygon points="522,288 550,324 522,324"/>
+
+    <rect x="850" y="28" width="54" height="204"/>
+    <rect x="850" y="276" width="54" height="204"/>
+    <rect x="730" y="184" width="174" height="48"/>
+    <rect x="730" y="276" width="174" height="48"/>
+  </g>
+</svg>

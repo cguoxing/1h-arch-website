@@ -1,0 +1,30 @@
+.DS_Store
+.env
+.env.*
+*.log
+node_modules/
+
+# 项目元数据 / 任务缓存
+.workbuddy/
+
+# 上传目录：保留占位 README，忽略真实上传图片
+project-uploads/*
+!project-uploads/README.md
+bak/project-uploads/*
+
+# 数据库数据 / 敏感配置
+deploy/mysql/data/
+deploy/mysql/init/*.cnf
+*.sql.bak
+
+# 备份目录（保留 README/说明，忽略其余）
+bak/*
+!bak/README.md
+
+
+# 本地配置（含数据库密码），仓库只提供 includes/config.example.php
+includes/config.php
+includes/config.local.php
+
+# NAS 测试环境与内部部署脚本（含内网路径），不公开
+deploy/

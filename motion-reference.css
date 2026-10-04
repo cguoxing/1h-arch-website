@@ -1,0 +1,264 @@
+/* Reference motion layer: editorial, archive-like, image-led. */
+:root {
+  --ref-ink: #101010;
+  --ref-paper: #f4f2ed;
+  --ref-line: rgba(16, 16, 16, 0.18);
+  --ref-signal: #c43724;
+  --ref-green: #264c3f;
+  --ref-muted: rgba(16, 16, 16, 0.62);
+  --ref-ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+body {
+  background: var(--ref-paper);
+}
+
+body::before {
+  background:
+    linear-gradient(90deg, transparent 0 33px, rgba(16, 16, 16, 0.055) 33px 34px, transparent 34px),
+    linear-gradient(180deg, transparent 0 33px, rgba(16, 16, 16, 0.045) 33px 34px, transparent 34px);
+  background-size: 96px 96px;
+  mask: none;
+  opacity: 0.55;
+}
+
+.topbar,
+.site-header {
+  border-bottom-color: transparent !important;
+}
+
+.nav__link,
+.primary-nav a,
+.button,
+.filter-btn,
+.project-board__item,
+.project-item,
+.download,
+.card,
+.project-card {
+  border-radius: 0 !important;
+}
+
+.hero:not(.hero--cinematic),
+.section {
+  border-bottom: 1px solid var(--ref-line);
+}
+
+.hero__title,
+.section__title,
+.card__title,
+.project-detail__title,
+.contact h2 {
+  letter-spacing: 0;
+}
+
+.hero__eyebrow,
+.section__eyebrow,
+.eyebrow,
+.badge {
+  color: var(--ref-signal);
+}
+
+.ph-img {
+  border-radius: 0;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(0.95) contrast(1.08);
+  transform: translateZ(0);
+}
+
+.ph-img::before {
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.14) 0 1px, transparent 1px 5px),
+    linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.18));
+  opacity: 1;
+  mix-blend-mode: normal;
+}
+
+body[data-page="about"] .hero .ph-img { background-image: url("img/about.jpg"); }
+body[data-page="about"] .card:nth-child(1) .ph-img { background-image: url("img/team.jpg"); }
+body[data-page="about"] .card:nth-child(2) .ph-img { background-image: url("img/blog.jpg"); }
+body[data-page="about"] .card:nth-child(3) .ph-img { background-image: url("img/about.jpg"); }
+body[data-page="projects"] .hero .ph-img { background-image: url("img/gallery.jpg"); }
+body[data-page="projects"] .project-card:nth-child(1) .ph-img { background-image: url("img/001.jpg"); }
+body[data-page="projects"] .project-card:nth-child(2) .ph-img { background-image: url("img/002.jpg"); }
+body[data-page="projects"] .project-card:nth-child(3) .ph-img { background-image: url("img/003.jpg"); }
+body[data-page="projects"] .project-card:nth-child(4) .ph-img { background-image: url("img/004.jpg"); }
+body[data-page="projects"] .project-card:nth-child(5) .ph-img { background-image: url("img/005.jpg"); }
+body[data-page="projects"] .project-card:nth-child(6) .ph-img { background-image: url("img/006.jpg"); }
+body[data-page="contact"] .hero .ph-img,
+body[data-page="contact"] .card .ph-img { background-image: url("img/contact.jpg"); }
+
+.ph-img__label {
+  border-radius: 0;
+  background: var(--ref-ink);
+}
+
+.section__head,
+.hero__grid {
+  position: relative;
+}
+
+.section__head::before,
+.hero__grid::before {
+  content: none;
+  position: absolute;
+  top: -18px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--ref-ink);
+  transform: scaleX(var(--line-scale, 1));
+  transform-origin: left;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 700ms var(--ref-ease),
+    transform 700ms var(--ref-ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.motion-line {
+  overflow: hidden;
+}
+
+.motion-line > span {
+  display: inline-block;
+  transform: translateY(112%);
+  transition: transform 760ms var(--ref-ease);
+}
+
+.motion-line.is-visible > span {
+  transform: translateY(0);
+}
+
+.project-card,
+.card,
+.download,
+.project-board__item {
+  transition:
+    transform 260ms var(--ref-ease),
+    border-color 260ms var(--ref-ease),
+    background-color 260ms var(--ref-ease),
+    opacity 260ms var(--ref-ease);
+}
+
+.project-card:hover,
+.card:hover,
+.download:hover {
+  transform: translateY(-6px);
+  border-color: rgba(196, 55, 36, 0.48);
+}
+
+.project-card[hidden] {
+  display: none;
+  pointer-events: none;
+}
+
+.project-card.is-previewing {
+  border-color: rgba(196, 55, 36, 0.72);
+}
+
+.ref-preview {
+  position: fixed;
+  z-index: 999;
+  width: min(360px, 34vw);
+  aspect-ratio: 16 / 10;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(-50%, -50%, 0) scale(0.94);
+  transition: opacity 180ms var(--ref-ease), transform 220ms var(--ref-ease);
+  background: var(--ref-ink);
+  border: 1px solid rgba(244, 242, 237, 0.28);
+  overflow: hidden;
+}
+
+.ref-preview.is-active {
+  opacity: 1;
+  transform: translate3d(-50%, -50%, 0) scale(1);
+}
+
+.ref-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.9) contrast(1.05);
+}
+
+.ref-progress {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 5000;
+  width: 100%;
+  height: 3px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: var(--ref-signal);
+}
+
+@media (max-width: 760px) {
+  .ref-preview {
+    display: none;
+  }
+
+  .section__head::before,
+  .hero__grid::before {
+    top: -12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .motion-line > span,
+  .project-card,
+  .card,
+  .download {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+.hero.fade-in,
+.hero .motion-line {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.hero .motion-line > span {
+  transform: none !important;
+}
+
+body[data-page="home"] .project-board__layout,
+body[data-page="home"] .project-board__viewer.card {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+body[data-page="home"] .project-board__stage {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+body[data-page="home"] .project-board__viewer.card:hover {
+  transform: none;
+  border-color: transparent !important;
+}
+
+body[data-page="home"] .project-board__image {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}

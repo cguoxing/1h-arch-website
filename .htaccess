@@ -1,0 +1,55 @@
+# 1+H 官网 · Apache 配置（西部数码 Linux 虚拟主机默认支持 .htaccess）
+# 如主机允许，可取消下一行注释以禁止目录列表
+# Options -Indexes
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # 站点地图
+  RewriteRule ^sitemap\.xml$ sitemap.php [L]
+  # 禁止直接访问内部目录
+  RewriteRule ^(includes|deploy|bak)(/|$) - [F,L]
+</IfModule>
+
+# 敏感文件不对外
+<FilesMatch "\.(md|sql|sh|cnf|log|bak|tgz|env)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Gzip 压缩文本资源
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml application/xml application/javascript application/json image/svg+xml
+</IfModule>
+
+# 静态资源长缓存（CSS/JS 链接自带版本号，文件一改链接就变，不会用到旧缓存）
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/gif "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# 上传目录禁止执行脚本
+<IfModule mod_rewrite.c>
+  RewriteRule ^project-uploads/.*\.(php|phtml|php\d|phar)$ - [F,L,NC]
+</IfModule>

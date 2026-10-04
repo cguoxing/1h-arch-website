@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin.php
+Disallow: /admin-content.php
+Disallow: /api/
+Disallow: /install/
+Disallow: /includes/
+Disallow: /deploy/
+
+Sitemap: https://www.1h-arch.com/sitemap.xml
